@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="API Roguelike is a browser-based choice game where live API data changes the player's journey." />
+  <title>API Roguelike</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="app">
+    <section id="start-screen" class="screen active">
+      <div class="hero-card">
+        <p class="eyebrow">CSE 2004 Final Project</p>
+        <h1>API Roguelike</h1>
+        <p class="subtitle">
+          A choice-based survival game where random events, live API data, and your decisions shape the run.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <span>🎲</span>
+            <p>Random Events</p>
+          </div>
+          <div class="feature">
+            <span>🌐</span>
+            <p>External API</p>
+          </div>
+          <div class="feature">
+            <span>⚔️</span>
+            <p>Interactive Choices</p>
+          </div>
+        </div>
+
+        <button id="start-btn" class="primary-btn">Start Run</button>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Current Run</p>
+          <h2>The Digital Dungeon</h2>
+        </div>
+        <button id="restart-btn" class="ghost-btn">Restart</button>
+      </header>
+
+      <section class="dashboard">
+        <article class="stat-card">
+          <p>HP</p>
+          <strong id="hp">100</strong>
+        </article>
+        <article class="stat-card">
+          <p>Gold</p>
+          <strong id="gold">20</strong>
+        </article>
+        <article class="stat-card">
+          <p>Luck</p>
+          <strong id="luck">5</strong>
+        </article>
+        <article class="stat-card">
+          <p>Day</p>
+          <strong id="day">1</strong>
+        </article>
+      </section>
+
+      <section class="game-layout">
+        <article class="event-card">
+          <div class="event-header">
+            <p id="event-type" class="tag">Event</p>
+            <p id="api-status" class="api-status">API ready</p>
+          </div>
+
+          <h3 id="event-title">Loading...</h3>
+          <p id="event-text"></p>
+
+          <blockquote id="quote-box">
+            “The API oracle has not spoken yet.”
+          </blockquote>
+
+          <div id="choice-area" class="choice-area"></div>
+        </article>
+
+        <aside class="log-panel">
+          <h3>Run Log</h3>
+          <div id="log-list" class="log-list"></div>
+        </aside>
+      </section>
+    </section>
+
+    <section id="end-screen" class="screen">
+      <div class="hero-card">
+        <p class="eyebrow">Run Complete</p>
+        <h1 id="ending-title">Game Over</h1>
+        <p id="ending-text" class="subtitle"></p>
+        <button id="play-again-btn" class="primary-btn">Play Again</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
