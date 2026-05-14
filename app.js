@@ -730,11 +730,17 @@ function createCampfireEvent() {
         addLog("You practiced until the dark stepped back.");
         checkAttackMilestone();
       }),
+
       choice("Focus.", "authority", () => {
-        state.luck += 2;
-        state.systemTrust += 1;
-        addLog("Your senses sharpened in the quiet.");
-        checkAuthorityKey();
+
+      state.luck += 2;
+      state.systemTrust += 1;
+      if (state.corruption > 0) {
+       state.corruption -= 2;
+        }
+
+      addLog("The fire burns away part of the corruption.");
+      checkAuthorityKey();
       })
     ]
   };
@@ -986,10 +992,26 @@ function countInsertedKeys() {
 }
 
 function updateUI() {
-  fragmentKeyEl.textContent = `Fragment Key: ${state.keys.fragment ? "✅" : "❌"}`;
-  authorityKeyEl.textContent = `Authority Key: ${state.keys.authority ? "✅" : "❌"}`;
-  echoKeyEl.textContent = `Echo Key: ${state.keys.echo ? "✅" : "❌"}`;
-  overrideKeyEl.textContent = `Override Key: ${state.keys.override ? "✅" : "❌"}`;
+fragmentKeyEl.style.display = state.keys.fragment ? "block" : "none";
+authorityKeyEl.style.display = state.keys.authority ? "block" : "none";
+echoKeyEl.style.display = state.keys.echo ? "block" : "none";
+overrideKeyEl.style.display = state.keys.override ? "block" : "none";
+
+if (state.keys.fragment) {
+  fragmentKeyEl.textContent = "🔑 Fragment Key";
+}
+
+if (state.keys.authority) {
+  authorityKeyEl.textContent = "🔑 Authority Key";
+}
+
+if (state.keys.echo) {
+  echoKeyEl.textContent = "🔑 Echo Key";
+}
+
+if (state.keys.override) {
+  overrideKeyEl.textContent = "🔑 Override Key";
+}
 
   fragmentKeyEl.classList.toggle("owned", state.keys.fragment);
   authorityKeyEl.classList.toggle("owned", state.keys.authority);
